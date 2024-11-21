@@ -1,45 +1,47 @@
+import { check, validationResult } from 'express-validator';
 import express, { Request, Response } from 'express';
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
-import { check, validationResult } from 'express-validator';
+import bcrypt from 'bcryptjs';
 
 const router = express.Router();
 
-/* REGISTER ROUTE (localhost:7000/api/users/register) */
+/* LOGIN ROUTE (localhost:7000/api/auth/login) */
 router.post(
-  `/register`,
+  `/login`,
   [
-    check('firstName', 'First Name is required').isString(),
-    check('firstName', 'First Name is required').isString(),
     check('email', 'Email is required').isEmail(),
     check('password', 'Password with 6 or more characters required').isLength({
       min: 6,
     }),
   ],
   async (req: Request, res: Response) => {
+    // Check errors from express validator
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(400).json({ message: errors.array() });
       return;
     }
 
-    try {
-      // find user in database
-      let user = await User.findOne({
-        email: req.body.email,
-      });
+    // Get data from req.body
+    const { email, password } = req.body;
 
-      // return error if user already exists
-      if (user) {
-        res.status(400).json({ message: `User already exists` });
+    try {
+      // Find user on DB & guard
+      const user = await User.findOne({ email: email });
+      if (!user) {
+        res.status(400).json({ message: `Invalid Credentials` });
         return;
       }
 
-      // No user with this data in DB, create & save user in DB (Hash Password in Middleware)
-      user = new User(req.body);
-      await user.save();
+      // Check match password
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        res.status(400).json({ message: `Invalid Credentials` });
+        return;
+      }
 
-      // Create token from JWT
+      // Create jwt token
       const token = jwt.sign(
         {
           userId: user.id,
@@ -57,14 +59,13 @@ router.post(
         maxAge: 86400000,
       });
 
-      // Send notify to client
-      res.sendStatus(200);
+      // Send res to client
+      res.status(200).json({ userId: user._id });
     } catch (error) {
-      console.error(`🚀error (register route):`, error);
-      res.status(500).send({ message: `Something went wrong` });
+      console.error(`🚀error (/login):`, error);
+      res.status(500).json({ message: `Something went wrong` });
     }
   },
 );
 
-/* Export router */
 export default router;
