@@ -6,3 +6,4 @@
 ### 06 Fix ESlint vs Prettier
 ### 07 User Registration API
 ### 08 User Login API
+### 09 User Registration Form (UI & FE)

@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -26,7 +27,27 @@ function App() {
           }
         />
 
-        {/* All Unkow Routes Navigate to Homepage */}
+        {/* Register Page */}
+        <Route
+          path="/register"
+          element={
+            <Layout>
+              <Register />
+            </Layout>
+          }
+        />
+
+        {/* Login Page */}
+        <Route
+          path="/login"
+          element={
+            <Layout>
+              <p>Login Page</p>
+            </Layout>
+          }
+        />
+
+        {/* All Unknow Routes Navigate to Homepage */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
