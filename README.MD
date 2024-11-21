@@ -4,3 +4,4 @@
 ### 04 Tailwind CSS Setup
 ### 05 Adding Layout
 ### 06 Fix ESlint vs Prettier
+### 07 User Registration API

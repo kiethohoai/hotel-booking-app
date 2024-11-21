@@ -2,6 +2,7 @@ import express, { Request, Response, urlencoded } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import userRoutes from "./routes/users";
 
 /* DB Connect */
 mongoose.connect(process.env.MONGO_CONNECTION_STRING as string).then(() => {
@@ -16,10 +17,8 @@ app.use(express.json());
 app.use(urlencoded({ extended: true }));
 app.use(cors());
 
-/* Routes */
-app.get(`/api/test`, async (req: Request, res: Response) => {
-  res.json({ message: `Hello from Express Endpoint` });
-});
+/* User Routes */
+app.use(`/api/users`, userRoutes);
 
 /* App Run */
 app.listen(7000, () => {
