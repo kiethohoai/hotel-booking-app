@@ -58,7 +58,7 @@ router.post(
       });
 
       // Send notify to client
-      res.sendStatus(200);
+      res.status(200).send({ message: `User Register Succesfully` });
     } catch (error) {
       console.error(`🚀error (register route):`, error);
       res.status(500).send({ message: `Something went wrong` });
