@@ -1,7 +1,9 @@
 import express, { Request, Response, urlencoded } from 'express';
+import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import 'dotenv/config';
-import mongoose from 'mongoose';
+
 import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
 
@@ -13,10 +15,16 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING as string).then(() => {
 
 /* App */
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 
 app.use(urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FONTEND_URL,
+    credentials: true,
+  }),
+);
 
 /* App Routes */
 app.use(`/api/users`, userRoutes);
