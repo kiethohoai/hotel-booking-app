@@ -51,7 +51,9 @@ const Register = () => {
             className="w-full rounded border px-2 py-1 font-normal"
             {...register('firstName', { required: `This field is required` })}
           />
-          {errors.firstName && <span className="text-red-500">{errors.firstName.message}</span>}
+          {errors.firstName && (
+            <span className="text-red-500">{errors.firstName.message}</span>
+          )}
         </label>
 
         <label className="flex-1 text-sm font-bold text-gray-700">
@@ -61,7 +63,9 @@ const Register = () => {
             className="w-full rounded border px-2 py-1 font-normal"
             {...register('lastName', { required: `This field is required` })}
           />
-          {errors.lastName && <span className="text-red-500">{errors.lastName.message}</span>}
+          {errors.lastName && (
+            <span className="text-red-500">{errors.lastName.message}</span>
+          )}
         </label>
       </div>
 
@@ -73,7 +77,9 @@ const Register = () => {
           className="w-full rounded border px-2 py-1 font-normal"
           {...register('email', { required: `This field is required` })}
         />
-        {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+        {errors.email && (
+          <span className="text-red-500">{errors.email.message}</span>
+        )}
       </label>
 
       {/* Password */}
@@ -90,7 +96,9 @@ const Register = () => {
             },
           })}
         />
-        {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+        {errors.password && (
+          <span className="text-red-500">{errors.password.message}</span>
+        )}
       </label>
 
       {/* Confirm Password */}
@@ -102,7 +110,8 @@ const Register = () => {
           {...register('confirmPassowrd', {
             validate: (curPassword) => {
               if (!curPassword) return `This field is required`;
-              if (watch('password') !== curPassword) return `Your password do not match`;
+              if (watch('password') !== curPassword)
+                return `Your password do not match`;
             },
           })}
         />
@@ -114,8 +123,8 @@ const Register = () => {
       <div className="flex items-center justify-between">
         <span>
           Already registed?{' '}
-          <Link to="/login" className="italic underline">
-            Sign in here
+          <Link to="/sign-in" className="italic underline">
+            Sign in here!
           </Link>
         </span>
         <span>

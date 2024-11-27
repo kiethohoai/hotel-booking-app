@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Register from './pages/Register';
+import SignIn from './pages/SignIn';
 
 function App() {
   return (
@@ -39,10 +40,10 @@ function App() {
 
         {/* Login Page */}
         <Route
-          path="/login"
+          path="/sign-in"
           element={
             <Layout>
-              <p>Login Page</p>
+              <SignIn />
             </Layout>
           }
         />

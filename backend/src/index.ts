@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import 'dotenv/config';
 
+import morgan from 'morgan';
+
 import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
 
@@ -17,6 +19,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING as string).then(() => {
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+app.use(morgan('dev'));
 
 app.use(urlencoded({ extended: true }));
 app.use(
