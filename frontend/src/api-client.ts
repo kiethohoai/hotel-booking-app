@@ -47,3 +47,17 @@ export const validateToken = async () => {
   const data = await respone.json();
   return data;
 };
+
+export const signOut = async () => {
+  const res = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!res.ok) throw new Error(`Error during sign out.`);
+  const data = await res.json();
+  return data;
+};
