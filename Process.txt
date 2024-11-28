@@ -12,3 +12,4 @@
 ### 12 Checking User Login State
 ### 13 Sign In (FE & BackEnd)
 ### 14 Sign Out (FE & BackEnd)
+### 15 Static File & Build Scripts

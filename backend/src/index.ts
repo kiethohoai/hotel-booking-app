@@ -8,6 +8,7 @@ import morgan from 'morgan';
 
 import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
+import path from 'path';
 
 /* DB Connect */
 mongoose.connect(process.env.MONGO_CONNECTION_STRING as string).then(() => {
@@ -28,6 +29,9 @@ app.use(
     credentials: true,
   }),
 );
+
+/* Static Files */
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 
 /* App Routes */
 app.use(`/api/users`, userRoutes);
