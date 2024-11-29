@@ -4,10 +4,12 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import 'dotenv/config';
 import morgan from 'morgan';
-import userRoutes from './routes/users';
-import authRoutes from './routes/auth';
 import path from 'path';
 import { v2 as cloudinary } from 'cloudinary';
+
+import userRoutes from './routes/users';
+import authRoutes from './routes/auth';
+import myHotelRoutes from './routes/my-hotels';
 
 // Cloudinary Config
 cloudinary.config({
@@ -42,6 +44,7 @@ app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 /* App Routes */
 app.use(`/api/users`, userRoutes);
 app.use(`/api/auth`, authRoutes);
+app.use(`/api/my-hotel`, myHotelRoutes);
 
 /* App Run */
 app.listen(7000, () => {
