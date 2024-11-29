@@ -1,14 +1,20 @@
-import express, { Request, Response, urlencoded } from 'express';
+import express, { urlencoded } from 'express';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import 'dotenv/config';
-
 import morgan from 'morgan';
-
 import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
 import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Cloudinary Config
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 /* DB Connect */
 mongoose.connect(process.env.MONGO_CONNECTION_STRING as string).then(() => {

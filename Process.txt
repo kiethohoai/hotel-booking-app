@@ -1,15 +1,16 @@
-### 01 Backend Setup
-### 02 Frontend Setup
-### 03 MongoDB Setup
-### 04 Tailwind CSS Setup
-### 05 Adding Layout
-### 06 Fix ESlint vs Prettier
-### 07 User Registration API
-### 08 User Login API
-### 09 User Registration Form (UI & FE)
-### 10 Link User Register FE & Backend
-### 11 App Context & Toast Notifications
-### 12 Checking User Login State
-### 13 Sign In (FE & BackEnd)
-### 14 Sign Out (FE & BackEnd)
-### 15 Static File & Build Scripts
+01 Backend Setup
+02 Frontend Setup
+03 MongoDB Setup
+04 Tailwind CSS Setup
+05 Adding Layout
+06 Fix ESlint vs Prettier
+07 User Registration API
+08 User Login API
+09 User Registration Form (UI & FE)
+10 Link User Register FE & Backend
+11 App Context & Toast Notifications
+12 Checking User Login State
+13 Sign In (FE & BackEnd)
+14 Sign Out (FE & BackEnd)
+15 Static File & Build Scripts
+16 SETUP CLOUNDINARY
