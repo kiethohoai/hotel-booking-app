@@ -1,4 +1,4 @@
-import express, { urlencoded } from 'express';
+import express, { Request, Response, urlencoded } from 'express';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -45,6 +45,10 @@ app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 app.use(`/api/users`, userRoutes);
 app.use(`/api/auth`, authRoutes);
 app.use(`/api/my-hotels`, myHotelRoutes);
+
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
+});
 
 /* App Run */
 app.listen(7000, () => {
