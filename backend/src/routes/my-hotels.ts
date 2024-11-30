@@ -49,7 +49,8 @@ router.post(
       .isArray()
       .withMessage(`Facilities is required`),
   ],
-  upload.array('imageFiles', 6),
+  // upload.array('imageFiles', 6),
+  upload.any(),
   async (req: Request, res: Response) => {
     try {
       const imageFiles = req.files as Express.Multer.File[];

@@ -3,8 +3,12 @@ import { BrowserRouter } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Register from './pages/Register';
 import SignIn from './pages/SignIn';
+import AddHotel from './pages/AddHotel';
+import { useAppContext } from './context/useAppContext';
 
 function App() {
+  const { isLoggedIn } = useAppContext();
+
   return (
     <BrowserRouter>
       <Routes>
@@ -47,6 +51,19 @@ function App() {
             </Layout>
           }
         />
+
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/add-hotel"
+              element={
+                <Layout>
+                  <AddHotel />
+                </Layout>
+              }
+            />
+          </>
+        )}
 
         {/* All Unknow Routes Navigate to Homepage */}
         <Route path="*" element={<Navigate to="/" />} />
